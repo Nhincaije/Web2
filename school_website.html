@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #CC3636;
+            border: 3px solid #FFF;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h2 {
+            color: #CC3636;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Video section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Image gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Form */
+        .form-container {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #8B0000;
+            font-size: 16px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #CC3636;
+            border-radius: 5px;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        
+        .submit-btn {
+            background: #CC3636;
+            color: #FFF;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #8B0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm: The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html">Hoạt Động</a></li>
+            <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+            <li><a href="#register">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Trang chủ với video -->
+        <section id="home" class="content-section">
+            <h2>Chào Mừng Đến Với Ngôi Trường Mến Yêu</h2>
+            <p>Trường chúng tôi là ngôi nhà thứ hai của hàng ngàn học sinh, nơi mà tri thức được truyền đạt, tình bạn được vun đắp và những ước mơ được nuôi dưỡng. Với đội ngũ giáo viên tận tâm, cơ sở vật chất hiện đại và môi trường học tập năng động, chúng tôi cam kết mang đến cho học sinh những trải nghiệm giáo dục tốt nhất.</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            
+            <p>Hãy cùng khám phá những điều tuyệt vời về ngôi trường của chúng ta qua video giới thiệu ở trên. Chúng tôi tự hào về truyền thống giáo dục, về những thành tích xuất sắc và đặc biệt là về những học sinh tài năng, nhiệt huyết của mình.</p>
+            
+            <p>Để tìm hiểu thêm về các chương trình học tập và hoạt động ngoại khóa, bạn có thể truy cập <a href="https://moet.gov.vn" style="color: #CC3636; font-weight: bold;">Bộ Giáo dục và Đào tạo</a> hoặc xem thêm các trang khác trên website của chúng tôi.</p>
+        </section>
+
+        <!-- Lịch sử trường -->
+        <section id="history" class="content-section">
+            <h2>Lịch Sử Hình Thành Và Phát Triển</h2>
+            <p>Trường được thành lập vào năm 1975, ngay sau ngày đất nước thống nhất. Từ một ngôi trường nhỏ với vài ba phòng học đơn sơ, qua gần 50 năm xây dựng và phát triển, ngôi trường đã trở thành một trong những cơ sở giáo dục hàng đầu trong khu vực.</p>
+            
+            <p>Những năm đầu thành lập, trường chỉ có khoảng 200 học sinh và 15 giáo viên. Điều kiện học tập còn nhiều khó khăn, thiếu thốn. Nhưng với tinh thần quyết tâm của toàn thể thầy cô và học sinh, trường đã vượt qua mọi thử thách để phát triển không ngừng.</p>
+            
+            <p>Đến năm 2000, trường đã được nâng cấp toàn diện về cơ sở vật chất với hệ thống phòng học hiện đại, thư viện, phòng thí nghiệm đầy đủ trang thiết bị. Năm 2010, trường đạt chuẩn quốc gia mức độ 1 và tiếp tục phấn đấu đạt chuẩn mức độ 2 vào năm 2018. Để biết thêm về tiêu chuẩn giáo dục quốc gia, bạn có thể tham khảo tại <a href="https://thuvienphapluat.vn" style="color: #CC3636; font-weight: bold;">Thư viện pháp luật Việt Nam</a>.</p>
+            
+            <p>Hiện nay, trường có quy mô hơn 1500 học sinh và 100 giáo viên, với tỷ lệ học sinh đỗ đại học hàng năm đạt trên 95%. Nhiều thế hệ học sinh của trường đã trở thành những công dân có ích cho xã hội, góp phần vào sự phát triển của đất nước. Tìm hiểu chi tiết hơn tại <a href="history.html" style="color: #CC3636; font-weight: bold;">trang Lịch sử trường</a>.</p>
+        </section>
+
+        <!-- Thành tích -->
+        <section id="achievements" class="content-section">
+            <h2>Thành Tích Nổi Bật</h2>
+            <p>Qua nhiều năm phấn đấu không ngừng, trường đã đạt được nhiều thành tích đáng tự hào:</p>
+            
+            <p><strong>Giải thưởng cấp quốc gia:</strong> Trường đã 5 lần liên tiếp đạt danh hiệu tập thể lao động xuất sắc. Năm 2020, trường vinh dự đón nhận Huân chương lao động hạng Ba do Chủ tịch nước trao tặng. Đây là phần thưởng xứng đáng cho những nỗ lực không ngừng nghỉ của toàn thể thầy cô giáo và học sinh.</p>
+            
+            <p><strong>Thành tích học tập:</strong> Trong kỳ thi THPT Quốc gia năm 2024, trường có 15 học sinh đạt điểm 10 môn Toán, 20 học sinh đạt điểm 10 môn Văn và hàng trăm em đạt điểm từ 9.0 trở lên các môn khác. Đặc biệt, 98% học sinh của trường đỗ đại học, cao đẳng, trong đó có nhiều em đỗ vào các trường đại học danh tiếng như Đại học Quốc gia Hà Nội, Đại học Bách Khoa, Đại học Y Hà Nội.</p>
+            
+            <p><strong>Giải thưởng Olympic:</strong> Học sinh của trường đã giành được 12 huy chương vàng, 25 huy chương bạc và 30 huy chương đồng tại các kỳ thi Olympic các môn học cấp quốc gia trong 5 năm qua. Đặc biệt, năm 2023, em Nguyễn Văn A đã giành Huy chương Vàng Olympic Toán học Quốc tế, mang về niềm tự hào lớn cho nhà trường và đất nước.</p>
+            
+            <p><strong>Hoạt động xã hội:</strong> Trường luôn tích cực tham gia các hoạt động từ thiện, tình nguyện phục vụ cộng đồng. Mỗi năm, đoàn trường tổ chức nhiều chương trình như "Mùa hè xanh", "Tiếp sức đến trường", "Xuân tình nguyện" giúp đỡ học sinh vùng sâu vùng xa và người dân có hoàn cảnh khó khăn. Xem chi tiết tại <a href="achievements.html" style="color: #CC3636; font-weight: bold;">trang Thành tích</a>.</p>
+        </section>
+
+        <!-- Tri ân -->
+        <section id="gratitude" class="content-section">
+            <h2>Tri Ân Thầy Cô</h2>
+            <p>💖 Trong hành trình học tập, chúng tôi luôn biết ơn những người thầy, người cô đã tận tâm dạy dỗ, truyền đạt kiến thức và là người dẫn đường cho chúng tôi. Không chỉ là những nhà giáo giỏi, các thầy cô còn là những người mẹ, người cha thứ hai, luôn quan tâm, chăm sóc và chia sẻ với học sinh trong mọi hoàn cảnh.</p>
+            
+            <p>Đặc biệt, lớp 12.3 xin gửi lời tri ân sâu sắc đến "mẹ Tuyền" - giáo viên chủ nhiệm, người đã không chỉ truyền đạt tri thức mà còn mang đến tiếng cười, sự ấm áp và động viên chúng tôi vượt qua mọi khó khăn trong những năm tháng học sinh cuối cấp.</p>
+            
+            <p>"Mẹ Tuyền" là bậc thầy trong giảng dạy, người biết cách biến những kiến thức khó hiểu thành những bài học sinh động, dễ nhớ. "Mẹ" là người bạn đồng hành vui vẻ, luôn biết cách dùng tiếng cười để giải tỏa căng thẳng. "Mẹ" là người chủ nhiệm tận tâm, lắng nghe và chia sẻ với từng học sinh như một người mẹ thực sự.</p>
+            
+            <p>Cảm ơn "mẹ Tuyền" và tất cả các thầy cô đã dành cả thanh xuân để dạy dỗ, nuôi dưỡng chúng tôi. Những bài học, lời dạy của thầy cô sẽ mãi là hành trang quý giá đồng hành cùng chúng tôi trên con đường phía trước. Đọc bài viết đầy đủ tại <a href="gratitude.html" style="color: #CC3636; font-weight: bold;">trang Tri ân</a>.</p>
+        </section>
+
+        <!-- Hoạt động -->
+        <section id="activities" class="content-section">
+            <h2>Hoạt Động Học Sinh</h2>
+            <p>Bên cạnh việc học tập, trường tổ chức nhiều hoạt động ngoại khóa phong phú để phát triển toàn diện cho học sinh:</p>
+            
+            <p><strong>Các câu lạc bộ:</strong> Trường có hơn 20 câu lạc bộ hoạt động sôi nổi như CLB Tiếng Anh, CLB Toán học, CLB Văn học, CLB Âm nhạc, CLB Thể thao, CLB Nhiếp ảnh, CLB Công nghệ thông tin... Học sinh có thể tham gia các câu lạc bộ phù hợp với sở thích và năng khiếu của mình để phát triển kỹ năng.</p>
+            
+            <p><strong>Hoạt động văn hóa văn nghệ:</strong> Hàng năm, trường tổ chức nhiều sự kiện lớn như Hội diễn văn nghệ chào mừng ngày Nhà giáo Việt Nam 20/11, Liên hoan ca múa nhạc mừng Xuân, Ngày hội văn hóa các dân tộc Việt Nam. Đây là dịp để các em thể hiện tài năng, đam mê của mình.</p>
+            
+            <p><strong>Hoạt động thể thao:</strong> Trường có đội tuyển bóng đá, bóng rổ, bóng chuyền, cầu lông, bơi lội... tham gia các giải thi đấu cấp thành phố và giành được nhiều giải thưởng cao. Việc rèn luyện thể thao không chỉ giúp học sinh có sức khỏe tốt mà còn rèn luyện tinh thần đoàn kết, ý chí vượt khó.</p>
+            
+            <p><strong>Chuyến tham quan học tập:</strong> Mỗi năm, trường tổ chức cho học sinh đi tham quan các di tích lịch sử, bảo tàng, khu công nghệ cao để học sinh có thêm kiến thức thực tế, mở rộng tầm nhìn. Các chuyến đi này luôn là những kỷ niệm đẹp trong lòng mỗi học sinh. Khám phá thêm tại <a href="activities.html" style="color: #CC3636; font-weight: bold;">trang Hoạt động</a>.</p>
+        </section>
+
+        <!-- Thư viện ảnh -->
+        <section id="gallery" class="content-section">
+            <h2>Thư Viện Ảnh</h2>
+            <p>Những khoảnh khắc đáng nhớ trong cuộc sống học đường:</p>
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400" alt="Học sinh trong giờ học">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Hoạt động ngoại khóa">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400" alt="Thư viện trường">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400" alt="Sân trường">
+            </div>
+            <p style="margin-top: 20px;">Xem thêm hàng ngàn ảnh đẹp khác tại <a href="gallery.html" style="color: #CC3636; font-weight: bold;">Thư viện ảnh</a> của chúng tôi.</p>
+        </section>
+
+        <!-- Form đăng ký -->
+        <section id="register" class="content-section">
+            <h2>Đăng Ký Thành Viên</h2>
+            <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập: *</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Mật khẩu: *</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullname">Họ và tên: *</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">Ngày sinh: *</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subjects">Tổ hợp môn học: *</label>
+                        <select id="subjects" name="subjects" required>
+                            <option value="">-- Chọn tổ hợp --</option>
+                            <option value="A00">A00 - Toán, Lý, Hóa</option>
+                            <option value="A01">A01 - Toán, Lý, Anh</option>
+                            <option value="B00">B00 - Toán, Hóa, Sinh</option>
+                            <option value="C00">C00 - Văn, Sử, Địa</option>
+                            <option value="D01">D01 - Toán, Văn, Anh</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sở thích:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="hobby" value="doc-sach"> Đọc sách</label>
+                            <label><input type="checkbox" name="hobby" value="the-thao"> Thể thao</label>
+                            <label><input type="checkbox" name="hobby" value="am-nhac"> Âm nhạc</label>
+                            <label><input type="checkbox" name="hobby" value="ve-tranh"> Vẽ tranh</label>
+                            <label><input type="checkbox" name="hobby" value="du-lich"> Du lịch</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="talent">Năng khiếu:</label>
+                        <textarea id="talent" name="talent" rows="4" placeholder="Mô tả năng khiếu đặc biệt của bạn..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Đăng Ký</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm The Wolf - Lớp 12.3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

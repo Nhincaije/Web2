@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: #FFF;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h2 {
+            color: #CC3636;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Video section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Image gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .quick-link-card {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .quick-link-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .quick-link-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .quick-link-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .quick-link-desc {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            border: 3px solid #8B0000;
+        }
+        
+        .stat-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm:The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html">Hoạt Động</a></li>
+            <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+            <li><a href="register.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Welcome Section -->
+        <section class="content-section">
+            <h2>Chào Mừng Đến Với Ngôi Trường Mến Yêu</h2>
+            <p>Trường chúng tôi là ngôi nhà thứ hai của hàng ngàn học sinh, nơi mà tri thức được truyền đạt, tình bạn được vun đắp và những ước mơ được nuôi dưỡng. Với đội ngũ giáo viên tận tâm, cơ sở vật chất hiện đại và môi trường học tập năng động, chúng tôi cam kết mang đến cho học sinh những trải nghiệm giáo dục tốt nhất.</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            
+            <p>Hãy cùng khám phá những điều tuyệt vời về ngôi trường của chúng ta qua video giới thiệu ở trên. Chúng tôi tự hào về truyền thống giáo dục, về những thành tích xuất sắc và đặc biệt là về những học sinh tài năng, nhiệt huyết của mình.</p>
+            
+            <p>Để tìm hiểu thêm về các chương trình học tập và hoạt động ngoại khóa, bạn có thể truy cập <a href="https://moet.gov.vn" style="color: #CC3636; font-weight: bold;">Bộ Giáo dục và Đào tạo</a> hoặc xem thêm các trang khác trên website của chúng tôi.</p>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="content-section">
+            <h2>Thống Kê Nổi Bật</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">Năm Thành Lập</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1,500+</div>
+                    <div class="stat-label">Học Sinh</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Giáo Viên</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Tỷ Lệ Đỗ ĐH</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="content-section">
+            <h2>Khám Phá Trường</h2>
+            <div class="quick-links">
+                <a href="history.html" class="quick-link-card">
+                    <div class="quick-link-icon">📚</div>
+                    <div class="quick-link-title">Lịch Sử Trường</div>
+                    <div class="quick-link-desc">Tìm hiểu về hành trình 50 năm xây dựng và phát triển của nhà trường từ những ngày đầu thành lập.</div>
+                </a>
+                
+                <a href="achievements.html" class="quick-link-card">
+                    <div class="quick-link-icon">🏆</div>
+                    <div class="quick-link-title">Thành Tích</div>
+                    <div class="quick-link-desc">Khám phá những thành tích xuất sắc trong học tập, thể thao và các hoạt động xã hội.</div>
+                </a>
+                
+                <a href="gratitude.html" class="quick-link-card">
+                    <div class="quick-link-icon">💖</div>
+                    <div class="quick-link-title">Tri Ân</div>
+                    <div class="quick-link-desc">Những lời tri ân chân thành gửi đến các thầy cô giáo đã tận tâm dạy dỗ học sinh.</div>
+                </a>
+                
+                <a href="activities.html" class="quick-link-card">
+                    <div class="quick-link-icon">🎭</div>
+                    <div class="quick-link-title">Hoạt Động</div>
+                    <div class="quick-link-desc">Tham gia các hoạt động ngoại khóa phong phú: câu lạc bộ, văn nghệ, thể thao, tình nguyện.</div>
+                </a>
+                
+                <a href="gallery.html" class="quick-link-card">
+                    <div class="quick-link-icon">📸</div>
+                    <div class="quick-link-title">Thư Viện Ảnh</div>
+                    <div class="quick-link-desc">Xem hơn 5,000 ảnh và video ghi lại những khoảnh khắc đẹp của đời sống học đường.</div>
+                </a>
+                
+                <a href="register.html" class="quick-link-card">
+                    <div class="quick-link-icon">✍️</div>
+                    <div class="quick-link-title">Đăng Ký</div>
+                    <div class="quick-link-desc">Đăng ký thành viên để nhận thông tin tư vấn và cập nhật tin tức mới nhất từ trường.</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Gallery -->
+        <section class="content-section">
+            <h2>Khoảnh Khắc Đáng Nhớ</h2>
+            <p>Những hình ảnh đẹp nhất trong cuộc sống học đường:</p>
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400" alt="Học sinh trong giờ học">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Hoạt động ngoại khóa">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400" alt="Thư viện trường">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400" alt="Sân trường">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Văn nghệ">
+                <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=400" alt="Thể thao">
+            </div>
+            <p style="margin-top: 20px; text-align: center;">Xem thêm hàng ngàn ảnh đẹp khác tại <a href="gallery.html" style="color: #CC3636; font-weight: bold;">Thư viện ảnh</a> của chúng tôi.</p>
+        </section>
+
+        <!-- News & Updates -->
+        <section class="content-section">
+            <h2>Tin Tức Mới Nhất</h2>
+            
+            <p><strong>🎉 Lễ Kỷ Niệm 50 Năm Thành Lập (Dự kiến Tháng 9/2025):</strong> Trường đang chuẩn bị cho lễ kỷ niệm 50 năm thành lập với nhiều hoạt động ý nghĩa. Chương trình sẽ có sự tham dự của các thế hệ cựu học sinh, giáo viên và lãnh đạo địa phương.</p>
+            
+            <p><strong>🏆 Giành Huy Chương Vàng Olympic Quốc Tế:</strong> Em Nguyễn Văn A lớp 12A1 đã xuất sắc giành Huy chương Vàng Olympic Toán học Quốc tế năm 2023. Đây là niềm tự hào lớn của nhà trường và là động lực to lớn cho các thế hệ học sinh sau.</p>
+            
+            <p><strong>💖 Chương Trình Tri Ân:</strong> Lớp 12.3 đã đăng tải bài viết tri ân cảm động về "mẹ Tuyền" - giáo viên chủ nhiệm. Bài viết đã lan tỏa mạnh mẽ trên mạng xã hội và nhận được hàng nghìn lượt yêu thích. Đọc bài viết tại <a href="gratitude.html" style="color: #CC3636; font-weight: bold;">đây</a>.</p>
+            
+            <p><strong>🌱 Chiến Dịch Mùa Hè Xanh 2024:</strong> Đoàn tình nguyện của trường đã có chuyến đi ý nghĩa đến Sơn La, xây dựng 3 nhà tình thương và trao tặng 500 suất quà cho bà con vùng cao. Xem thêm hình ảnh tại <a href="gallery.html" style="color: #CC3636; font-weight: bold;">Thư viện ảnh</a>.</p>
+            
+            <p><strong>⚽ Vô Địch Giải Bóng Đá Học Sinh THPT:</strong> Đội tuyển bóng đá của trường đã vô địch Giải bóng đá học sinh THPT toàn quốc năm 2023 sau trận chung kết kịch tính. Tìm hiểu thêm tại <a href="achievements.html" style="color: #CC3636; font-weight: bold;">trang Thành tích</a>.</p>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="content-section">
+            <h2>Liên Hệ Với Chúng Tôi</h2>
+            <p>Nếu bạn muốn tìm hiểu thêm về trường hoặc cần tư vấn về chương trình học tập, đừng ngại liên hệ với chúng tôi:</p>
+            
+            <p>📞 <strong>Điện thoại:</strong> (028) 1234 5678</p>
+            <p>📧 <strong>Email:</strong> contact@ngoitruongmenyeu.edu.vn</p>
+            <p>📍 <strong>Địa chỉ:</strong> 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            
+            <p style="margin-top: 25px;">Bạn cũng có thể <a href="register.html" style="color: #CC3636; font-weight: bold;">đăng ký thành viên</a> để nhận thông tin tư vấn chi tiết và cập nhật tin tức mới nhất từ nhà trường.</p>
+            
+            <p>Theo dõi chúng tôi trên mạng xã hội:</p>
+            <div class="social-links" style="margin-top: 20px;">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm The Wolf - Lớp 12.3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

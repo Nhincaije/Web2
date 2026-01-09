@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #CC3636;
+            border: 3px solid #FFF;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .page-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .page-title p {
+            font-size: 18px;
+            color: #FFE4B5;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h3 {
+            color: #CC3636;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Form Container */
+        .form-container {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #8B0000;
+            font-size: 18px;
+        }
+        
+        .required {
+            color: #CC3636;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #CC3636;
+            border-radius: 8px;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+        
+        /* Checkbox and Radio Groups */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .checkbox-group label:hover,
+        .radio-group label:hover {
+            background: #FFF5E6;
+        }
+        
+        .checkbox-group input[type="checkbox"],
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        /* Form Row */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #CC3636 0%, #8B0000 100%);
+            color: #FFD700;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px solid #8B0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .info-box h4 {
+            color: #8B0000;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+         <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm: The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html">Hoạt Động</a></li>
+            <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+            <li><a href="register.html" class="active">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>ĐĂNG KÝ THÀNH VIÊN</h2>
+            <p>Trở thành một phần của Ngôi Trường Mến Yêu</p>
+        </div>
+
+        <!-- Introduction -->
+        <section class="content-section">
+            <h3>Chào Mừng Bạn Đến Với Chúng Tôi!</h3>
+            <p>Cảm ơn bạn đã quan tâm đến Ngôi Trường Mến Yêu. Vui lòng điền đầy đủ thông tin vào biểu mẫu dưới đây để đăng ký thành viên. Sau khi đăng ký thành công, bạn sẽ nhận được thông tin tư vấn chi tiết về chương trình học tập, hoạt động ngoại khóa và các tin tức mới nhất từ nhà trường.</p>
+            
+            <div class="info-box">
+                <h4>📌 Lưu Ý Quan Trọng</h4>
+                <p>• Các trường có dấu (<span class="required">*</span>) là bắt buộc phải điền.</p>
+                <p>• Thông tin của bạn sẽ được bảo mật tuyệt đối theo chính sách bảo mật của trường.</p>
+                <p>• Sau khi đăng ký, bạn sẽ nhận email xác nhận trong vòng 24 giờ.</p>
+                <p>• Nếu có thắc mắc, vui lòng liên hệ: <strong>(028) 1234 5678</strong></p>
+            </div>
+        </section>
+
+        <!-- Registration Form -->
+        <section class="content-section">
+            <h3>Biểu Mẫu Đăng Ký</h3>
+            <div class="form-container">
+                <form action="#" method="post">
+                    <h4 style="color: #8B0000; font-size: 22px; margin-bottom: 20px; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Thông Tin Tài Khoản</h4>
+                    
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập <span class="required">*</span></label>
+                        <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập của bạn" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Mật khẩu <span class="required">*</span></label>
+                            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Xác nhận mật khẩu <span class="required">*</span></label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: #8B0000; font-size: 22px; margin: 30px 0 20px; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Thông Tin Cá Nhân</h4>
+                    
+                    <div class="form-group">
+                        <label for="fullname">Họ và tên <span class="required">*</span></label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên đầy đủ" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">Ngày sinh <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gender">Giới tính <span class="required">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" placeholder="Nhập địa chỉ hiện tại">
+                    </div>
+                    
+                    <h4 style="color: #8B0000; font-size: 22px; margin: 30px 0 20px; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Thông Tin Học Tập</h4>
+                    
+                    <div class="form-group">
+                        <label for="grade">Khối học <span class="required">*</span></label>
+                        <select id="grade" name="grade" required>
+                            <option value="">-- Chọn khối --</option>
+                            <option value="10">Khối 10</option>
+                            <option value="11">Khối 11</option>
+                            <option value="12">Khối 12</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subjects">Tổ hợp môn học <span class="required">*</span></label>
+                        <select id="subjects" name="subjects" required>
+                            <option value="">-- Chọn tổ hợp môn học --</option>
+                            <option value="A00">A00 - Toán, Lý, Hóa</option>
+                            <option value="A01">A01 - Toán, Lý, Anh</option>
+                            <option value="B00">B00 - Toán, Hóa, Sinh</option>
+                            <option value="C00">C00 - Văn, Sử, Địa</option>
+                            <option value="D01">D01 - Toán, Văn, Anh</option>
+                            <option value="D07">D07 - Toán, Hóa, Anh</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sở thích <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="hobby" value="doc-sach"> Đọc sách</label>
+                            <label><input type="checkbox" name="hobby" value="the-thao"> Thể thao</label>
+                            <label><input type="checkbox" name="hobby" value="am-nhac"> Âm nhạc</label>
+                            <label><input type="checkbox" name="hobby" value="ve-tranh"> Vẽ tranh / Nghệ thuật</label>
+                            <label><input type="checkbox" name="hobby" value="du-lich"> Du lịch</label>
+                            <label><input type="checkbox" name="hobby" value="cong-nghe"> Công nghệ / Lập trình</label>
+                            <label><input type="checkbox" name="hobby" value="nau-an"> Nấu ăn</label>
+                            <label><input type="checkbox" name="hobby" value="nhiep-anh"> Nhiếp ảnh</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="talent">Năng khiếu đặc biệt</label>
+                        <textarea id="talent" name="talent" rows="5" placeholder="Mô tả năng khiếu đặc biệt của bạn như ca hát, nhạc cụ, thể thao, vẽ tranh, viết văn..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bạn muốn tham gia câu lạc bộ nào?</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="club" value="toan"> CLB Toán học</label>
+                            <label><input type="checkbox" name="club" value="khoa-hoc"> CLB Khoa học</label>
+                            <label><input type="checkbox" name="club" value="tieng-anh"> CLB Tiếng Anh</label>
+                            <label><input type="checkbox" name="club" value="van-hoc"> CLB Văn học</label>
+                            <label><input type="checkbox" name="club" value="am-nhac"> CLB Âm nhạc</label>
+                            <label><input type="checkbox" name="club" value="the-thao"> CLB Thể thao</label>
+                            <label><input type="checkbox" name="club" value="nhiep-anh"> CLB Nhiếp ảnh</label>
+                            <label><input type="checkbox" name="club" value="cong-nghe"> CLB Công nghệ</label>
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: #8B0000; font-size: 22px; margin: 30px 0 20px; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Thông Tin Bổ Sung</h4>
+                    
+                    <div class="form-group">
+                        <label>Bạn biết đến trường qua đâu? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="source" value="ban-be" required> Bạn bè giới thiệu</label>
+                            <label><input type="radio" name="source" value="mang-xa-hoi"> Mạng xã hội (Facebook, Instagram...)</label>
+                            <label><input type="radio" name="source" value="website"> Website của trường</label>
+                            <label><input type="radio" name="source" value="bao-chi"> Báo chí / Truyền thông</label>
+                            <label><input type="radio" name="source" value="khac"> Khác</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Lời nhắn / Câu hỏi</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào, vui lòng để lại lời nhắn ở đây..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; font-weight: normal; color: #333;">
+                            <input type="checkbox" name="agree" required style="width: auto; margin-right: 10px; margin-top: 5px;">
+                            <span>Tôi đã đọc và đồng ý với <a href="#" style="color: #CC3636; font-weight: bold;">Chính sách bảo mật</a> và <a href="#" style="color: #CC3636; font-weight: bold;">Điều khoản sử dụng</a> của trường <span class="required">*</span></span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Đăng Ký Ngay</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Additional Info -->
+        <section class="content-section">
+            <h3>Sau Khi Đăng Ký</h3>
+            <p>Sau khi hoàn tất đăng ký, nhà trường sẽ xử lý thông tin của bạn và gửi email xác nhận trong vòng 24 giờ. Email sẽ bao gồm:</p>
+            
+            <p>• Thông tin chi tiết về chương trình học tập và lịch khai giảng</p>
+            <p>• Tài liệu hướng dẫn về các hoạt động ngoại khóa và câu lạc bộ</p>
+            <p>• Thông tin về học phí và các chính sách hỗ trợ học bổng</p>
+            <p>• Link tham gia nhóm Facebook và cộng đồng học sinh</p>
+            
+            <p style="margin-top: 20px;">Nếu bạn không nhận được email sau 24 giờ, vui lòng kiểm tra hộp thư spam hoặc liên hệ với chúng tôi qua số điện thoại <strong>(028) 1234 5678</strong> hoặc email <strong>contact@ngoitruongmenyeu.edu.vn</strong>.</p>
+            
+            <p>Trong thời gian chờ đợi, bạn có thể khám phá thêm về trường qua các trang: <a href="history.html" style="color: #CC3636; font-weight: bold;">Lịch sử</a>, <a href="achievements.html" style="color: #CC3636; font-weight: bold;">Thành tích</a>, <a href="activities.html" style="color: #CC3636; font-weight: bold;">Hoạt động</a>, và <a href="gallery.html" style="color: #CC3636; font-weight: bold;">Thư viện ảnh</a>.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm Học Sinh Tích Cực - Lớp 12A1</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

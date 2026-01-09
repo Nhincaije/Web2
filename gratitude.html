@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Ân - Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #CC3636;
+            border: 3px solid #FFF;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .page-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .page-title p {
+            font-size: 18px;
+            color: #FFE4B5;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h3 {
+            color: #CC3636;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section h4 {
+            color: #8B0000;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Article Header */
+        .article-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4B5 100%);
+            border-radius: 15px;
+            border: 3px solid #FFD700;
+        }
+        
+        .article-title {
+            font-size: 32px;
+            color: #8B0000;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-subtitle {
+            font-size: 20px;
+            color: #CC3636;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .article-meta {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border: 3px solid #FFD700;
+        }
+        
+        /* Image Gallery in Article */
+        .article-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .article-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid #FFD700;
+            transition: transform 0.3s;
+        }
+        
+        .article-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 3px solid #FFD700;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-left: 5px solid #8B0000;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-style: italic;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .quote-box p {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 0;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4B5 100%);
+            border: 3px solid #CC3636;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .highlight-box h4 {
+            color: #8B0000;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        /* Heart Animation */
+        .heart-decoration {
+            text-align: center;
+            font-size: 48px;
+            margin: 30px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 24px;
+            }
+            
+            .article-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm: The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about" class="active">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html" class="active">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html">Hoạt Động</a></li>
+            <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+            <li><a href="register.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>TRI ÂN</h2>
+            <p>Gửi lời cảm ơn đến những người thầy, người cô</p>
+        </div>
+
+        <!-- Article -->
+        <section class="content-section">
+            <div class="article-header">
+                <div class="article-title">
+                    💖 "Mẹ Tuyền" - Làn Gió Mát Lành của Lớp 12.3
+                </div>
+                <div class="article-subtitle">
+                    và là người mẹ thứ 2 của chúng tôi
+                </div>
+                <div class="article-meta">
+                    Bài viết của lớp 12.3 | Ngày 6 tháng 1, 2026
+                </div>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Cô Tuyền và học sinh" class="featured-image">
+
+            <p>Trong những năm tháng cuối cùng của đời học sinh, lớp 12.3 chúng tôi may mắn có được một người dẫn đường không chỉ giỏi chuyên môn mà còn vô cùng tâm lý và vui tính: "mẹ Tuyền", giáo viên chủ nhiệm và cũng là người truyền lửa tri thức mỗi ngày. Nhắc đến "mẹ", trong tâm trí của mỗi đứa chúng tôi, đó là sự kết hợp hoàn hảo giữa một nhà giáo uyên thâm và một người đồng hành đem lại đầy ắp tiếng cười.</p>
+
+            <div class="heart-decoration">💝</div>
+
+            <h4>🌟 Bậc Thầy Truyền Đạt Tri Thức</h4>
+            
+            <p>Điều đầu tiên phải nhắc đến khi nói về "mẹ" chính là khả năng giảng dạy xuất sắc. Những bài giảng mà nhiều học sinh cho là khô khan, khó nhằn qua lời "mẹ" đều trở nên sống động, dễ hiểu đến kinh ngạc. "Mẹ" có một nghệ thuật biến phức tạp thành đơn giản. Đó không chỉ dừng lại ở việc truyền đạt kiến thức sách vở, mà còn lồng ghép những ví dụ thực tế, những câu chuyện liên tưởng độc đáo, giúp chúng tôi không phải học thuộc lòng một cách máy móc, mà là thấu hiểu bản chất của vấn đề.</p>
+
+            <div class="article-gallery">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Giờ giảng dạy">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Cô và học sinh">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Lớp học">
+            </div>
+
+            <p>Cấu trúc bài học của "mẹ" luôn mạch lạc, logic, đến mức ngay cả những bạn vốn sợ môn học đó cũng phải thừa nhận: Nghe "mẹ Tuyền" giảng, tự nhiên thấy dễ hiểu hẳn ra. Chính nhờ phương pháp giảng dạy đặc biệt này mà lớp 12.3 luôn giữ được tinh thần học tập hăng say và đạt được những kết quả đáng tự hào.</p>
+
+            <div class="quote-box">
+                <p>"Nghe mẹ Tuyền giảng bài, kiến thức cứ tự động chạy vào đầu, học mà vui như chơi!"</p>
+            </div>
+
+            <h4>😄 Người Kết Nối Bằng Nụ Cười</h4>
+
+            <p>Bên cạnh sự uyên bác trong giảng dạy, điều khiến "mẹ" chiếm trọn tình cảm của chúng tôi chính là sự vô cùng vui tính và thân thiện, không bao giờ mang vẻ nghiêm nghị, khuôn phép thái quá của một giáo viên chủ nhiệm cấp 3, mà luôn mang đến sự ấm áp và thoải mái.</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            <p style="text-align: center; font-style: italic; margin-top: 10px; color: #666;">Video: Những khoảnh khắc vui vẻ của "mẹ Tuyền" cùng lớp 12.3</p>
+
+            <p>Những giờ học của "mẹ" luôn có những khoảnh khắc thư giãn bằng những câu chuyện hài hước, những lời nhận xét hóm hỉnh và biết cách dùng tiếng cười để giải tỏa căng thẳng cho chúng tôi, đặc biệt là trong giai đoạn nước rút của những kì thi. "Mẹ" không chỉ dạy chúng tôi kiến thức, mà còn dạy chúng tôi thái độ sống lạc quan, cách đối diện với áp lực bằng một tinh thần tích cực nhất.</p>
+
+            <div class="highlight-box">
+                <h4>💬 "Mẹ" thường nói:</h4>
+                <p>"Học hành phải vui thì kiến thức mới tự động chạy vào đầu! Con cứ mỉm cười mà học, điểm số sẽ theo con thôi!"</p>
+            </div>
+
+            <h4>🧭 Người Chủ Nhiệm Tận Tâm</h4>
+
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" alt="Hoạt động lớp" class="featured-image">
+
+            <p>Với vai trò là giáo viên chủ nhiệm, "mẹ Tuyền" không chỉ là người kiểm tra sổ đầu bài, mà còn là người quản lý kiêm người mẹ tinh thần của cả lớp, luôn lắng nghe những tâm tư, nguyện vọng của từng thành viên. Đặc biệt, "mẹ" không áp đặt, mà khéo léo định hướng, giúp chúng tôi tự tin hơn vào lựa chọn của bản thân.</p>
+
+            <p>Từ việc nhỏ như tổ chức hoạt động ngoại khóa, đến việc lớn như tư vấn chọn ngành, "mẹ" đều dành sự quan tâm chu đáo và chân thành nhất. Mỗi khi có bạn gặp khó khăn trong học tập hay cuộc sống, "mẹ" luôn sẵn sàng lắng nghe và chia sẻ như một người mẹ thực sự.</p>
+
+            <div class="article-gallery">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" alt="Tư vấn học sinh">
+                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Hoạt động lớp">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Sinh nhật lớp">
+            </div>
+
+            <h4>💌 Thay Lời Kết</h4>
+
+            <p>"Mẹ Tuyền" chính là một món quà mà lớp 12.3 may mắn nhận được trong năm học cuối cấp đầy thử thách này. "Mẹ" là người thắp lên ngọn lửa tri thức bằng tài năng, và sưởi ấm tâm hồn chúng tôi bằng sự vui vẻ, tận tâm. Bởi vậy, "mẹ" không chỉ là giáo viên, mà còn là một hình mẫu tuyệt vời về sự đam mê, lạc quan, và tử tế.</p>
+
+            <div class="quote-box">
+                <p>Cảm ơn "mẹ Tuyền", vì đã là "làn gió mát lành" mang tri thức và tiếng cười đến với hành trình chinh phục cánh cổng đại học của chúng con.</p>
+            </div>
+
+            <div class="heart-decoration">❤️ 💛 💚 💙 💜</div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); text-align: center;">
+                <h4>✨ Lời Tri Ân Từ Lớp 12.3 ✨</h4>
+                <p style="font-size: 20px; font-weight: bold; color: #8B0000;">Mãi yêu "Mẹ Tuyền" của chúng con! 💖</p>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="content-section">
+            <h3>Bài Viết Liên Quan</h3>
+            <p>Khám phá thêm về những người thầy, người cô đã đồng hành cùng chúng ta trong hành trình học tập:</p>
+            
+            <p>• Tìm hiểu về <a href="history.html" style="color: #CC3636; font-weight: bold;">lịch sử trường</a> và những thế hệ giáo viên đã cống hiến cho sự nghiệp giáo dục.</p>
+            
+            <p>• Xem các <a href="achievements.html" style="color: #CC3636; font-weight: bold;">thành tích xuất sắc</a> mà thầy cô và học sinh đã đạt được qua các năm.</p>
+            
+            <p>• Khám phá <a href="activities.html" style="color: #CC3636; font-weight: bold;">hoạt động ngoại khóa</a> với sự hướng dẫn tận tâm của các thầy cô.</p>
+            
+            <p>• Xem thêm hình ảnh đẹp về thầy cô và học sinh tại <a href="gallery.html" style="color: #CC3636; font-weight: bold;">thư viện ảnh</a>.</p>
+            
+            <p>Nếu bạn là học sinh và muốn chia sẻ câu chuyện tri ân của mình về thầy cô, hãy gửi bài viết của bạn đến <strong>trianon@ngoitruongmenyeu.edu.vn</strong>. Chúng tôi sẽ đăng tải những câu chuyện cảm động nhất lên website để lan tỏa tình cảm và lòng biết ơn đến những người thầy, người cô đã dành cả thanh xuân để dạy dỗ chúng ta.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            <p>📧 Email Tri ân: trianon@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm The Wolf - Lớp 12.3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

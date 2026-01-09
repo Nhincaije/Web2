@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Viện Ảnh - Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #CC3636;
+            border: 3px solid #FFF;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .page-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .page-title p {
+            font-size: 18px;
+            color: #FFE4B5;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h3 {
+            color: #CC3636;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Category Filter */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .filter-btn {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #8B0000;
+            border: 3px solid #8B0000;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 3px solid #FFD700;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(139, 0, 0, 0.95), transparent);
+            color: #FFD700;
+            padding: 20px 15px 15px;
+            transition: all 0.3s;
+        }
+        
+        .gallery-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-date {
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Video Gallery */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .video-item {
+            background: #FFF;
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .video-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Album Section */
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .album-card {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .album-cover {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .album-info {
+            padding: 20px;
+        }
+        
+        .album-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .album-count {
+            font-size: 16px;
+            color: #CC3636;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .album-date {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px solid #8B0000;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .highlight-box h4 {
+            font-size: 24px;
+            color: #8B0000;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: 17px;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 3px solid #FFD700;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #FFE4B5;
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm: The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html">Hoạt Động</a></li>
+            <li><a href="gallery.html" class="active">Thư Viện Ảnh</a></li>
+            <li><a href="register.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>THƯ VIỆN ẢNH</h2>
+            <p>Lưu giữ những khoảnh khắc đẹp nhất</p>
+        </div>
+
+        <!-- Introduction -->
+        <section class="content-section">
+            <h3>Giới Thiệu Thư Viện</h3>
+            <p>Chào mừng bạn đến với Thư viện ảnh của trường, nơi lưu giữ những khoảnh khắc đáng nhớ nhất trong hành trình học tập và trưởng thành của các thế hệ học sinh. Từ những buổi học trên lớp đầy tập trung, những hoạt động ngoại khóa sôi nổi, cho đến các sự kiện văn hóa văn nghệ rực rỡ sắc màu, tất cả đều được ghi lại qua từng bức ảnh.</p>
+            
+            <p>Thư viện được chia thành nhiều chuyên mục khác nhau, giúp bạn dễ dàng tìm kiếm và thưởng thức những hình ảnh theo từng chủ đề. Mỗi bức ảnh không chỉ là một kỷ niệm mà còn là minh chứng cho sự phát triển không ngừng của nhà trường và tinh thần học tập tích cực của các em học sinh.</p>
+            
+            <p>Để chia sẻ ảnh của bạn hoặc tìm hiểu thêm về các hoạt động, hãy liên hệ với chúng tôi qua <strong>media@ngoitruongmenyeu.edu.vn</strong> hoặc truy cập <a href="https://flickr.com" style="color: #CC3636; font-weight: bold;">kênh Flickr</a> của trường để xem thêm nhiều hình ảnh khác.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Ảnh trong thư viện</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Album sự kiện</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Video clips</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Năm lưu trữ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Albums -->
+        <section class="content-section">
+            <h3>Các Album Sự Kiện</h3>
+            <p>Khám phá các album ảnh theo từng sự kiện và hoạt động lớn của trường:</p>
+            
+            <div class="album-grid">
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Khai giảng" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Lễ Khai Giảng 2024</div>
+                        <div class="album-count">📸 125 ảnh</div>
+                        <div class="album-date">5 tháng 9, 2024</div>
+                    </div>
+                </div>
+                
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Văn nghệ 20/11" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Văn Nghệ 20/11</div>
+                        <div class="album-count">📸 280 ảnh</div>
+                        <div class="album-date">20 tháng 11, 2024</div>
+                    </div>
+                </div>
+                
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=400" alt="Giải bóng đá" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Giải Bóng Đá Liên Lớp</div>
+                        <div class="album-count">📸 156 ảnh</div>
+                        <div class="album-date">15 tháng 10, 2024</div>
+                    </div>
+                </div>
+                
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="Mùa hè xanh" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Mùa Hè Xanh 2024</div>
+                        <div class="album-count">📸 320 ảnh</div>
+                        <div class="album-date">Tháng 7, 2024</div>
+                    </div>
+                </div>
+                
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Hội trại" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Hội Trại Thanh Niên</div>
+                        <div class="album-count">📸 245 ảnh</div>
+                        <div class="album-date">Tháng 4, 2024</div>
+                    </div>
+                </div>
+                
+                <div class="album-card">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=400" alt="Tốt nghiệp" class="album-cover">
+                    <div class="album-info">
+                        <div class="album-title">Lễ Tốt Nghiệp 2024</div>
+                        <div class="album-count">📸 412 ảnh</div>
+                        <div class="album-date">Tháng 5, 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Gallery -->
+        <section class="content-section">
+            <h3>Bộ Sưu Tập Ảnh</h3>
+            <p>Lựa chọn danh mục để xem ảnh:</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active">Tất Cả</button>
+                <button class="filter-btn">Học Tập</button>
+                <button class="filter-btn">Văn Nghệ</button>
+                <button class="filter-btn">Thể Thao</button>
+                <button class="filter-btn">Tình Nguyện</button>
+                <button class="filter-btn">Sự Kiện</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Học trên lớp">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Giờ Học Toán Chuyên Sâu</div>
+                        <div class="gallery-date">15/7/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Trồng cây">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Chiến Dịch Trồng Cây</div>
+                        <div class="gallery-date">12/7/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" alt="Trao quà">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Trao Quà Vùng Cao</div>
+                        <div class="gallery-date">10/7/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400" alt="Nhận giải">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Nhận Giải Olympic</div>
+                        <div class="gallery-date">20/9/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=400" alt="Tốt nghiệp">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Lễ Tốt Nghiệp Khối 12</div>
+                        <div class="gallery-date">25/5/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400" alt="Cổng trường">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Cổng Trường Buổi Sáng</div>
+                        <div class="gallery-date">5/9/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400" alt="Sân trường">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Sân Trường Giờ Ra Chơi</div>
+                        <div class="gallery-date">3/9/2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="content-section">
+            <h3>Thư Viện Video</h3>
+            <p>Những video ghi lại các sự kiện và hoạt động đặc sắc của trường:</p>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">🎬 Lễ Khai Giảng Năm Học 2024-2025</div>
+                        <div class="video-description">Toàn cảnh buổi lễ khai giảng long trọng với sự tham gia của toàn thể thầy cô và học sinh. Những khoảnh khắc đầy cảm xúc khi bắt đầu năm học mới.</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">🎭 Hội Diễn Văn Nghệ Chào Mừng 20/11</div>
+                        <div class="video-description">Những tiết mục văn nghệ xuất sắc do học sinh biểu diễn trong ngày Nhà giáo Việt Nam. Đầy màu sắc và ý nghĩa.</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">⚽ Chung Kết Giải Bóng Đá Liên Lớp</div>
+                        <div class="video-description">Trận chung kết kịch tính giữa lớp 12A1 và 12A2. Những pha bóng đẹp mắt và tinh thần cổ vũ nhiệt tình từ các bạn học sinh.</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">❤️ Mùa Hè Xanh 2024 - Hành Trình Yêu Thương</div>
+                        <div class="video-description">Ghi lại hành trình của đoàn tình nguyện đến vùng cao Sơn La. Những hoạt động ý nghĩa và khoảnh khắc xúc động với bà con vùng sâu.</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">🎓 Lễ Tốt Nghiệp Khối 12 Năm 2024</div>
+                        <div class="video-description">Lễ trao bằng tốt nghiệp đầy xúc động cho học sinh khối 12. Những giọt nước mắt chia tay, những lời chúc tốt đẹp cho tương lai.</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">🏕️ Hội Trại Thanh Niên - Teambuilding 2024</div>
+                        <div class="video-description">Ba ngày hai đêm đầy kỷ niệm tại hội trại với các hoạt động teambuilding, đốt lửa trại, giao lưu văn nghệ và rất nhiều trò chơi thú vị.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Moments -->
+        <section class="content-section">
+            <h3>Khoảnh Khắc Học Sinh</h3>
+            <p>Những hình ảnh tự nhiên, chân thực về cuộc sống học đường:</p>
+            
+            <div class="highlight-box">
+                <h4>📸 Góc Chụp Đời Thường</h4>
+                <p>Cuộc sống học đường không chỉ có những buổi học căng thẳng mà còn có vô vàn khoảnh khắc vui vẻ, thoải mái. Từ những giây phút nghỉ giải lao với bạn bè, những cuộc trò chuyện dưới bóng cây trong sân trường, cho đến những nụ cười rạng rỡ khi đạt điểm cao, tất cả đều là những kỷ niệm đẹp khó quên.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" alt="Học nhóm">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Học Nhóm Dưới Bóng Cây</div>
+                        <div class="gallery-date">18/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Giờ ăn">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Giờ Ăn Trưa Vui Vẻ</div>
+                        <div class="gallery-date">16/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Đọc sách">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Mải Mê Với Sách Hay</div>
+                        <div class="gallery-date">14/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400" alt="Tự học">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Tự Học Trong Thư Viện</div>
+                        <div class="gallery-date">12/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400" alt="Cười đùa">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Nụ Cười Rạng Rỡ</div>
+                        <div class="gallery-date">10/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400" alt="Thảo luận">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Thảo Luận Bài Tập</div>
+                        <div class="gallery-date">8/11/2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historical Photos -->
+        <section class="content-section">
+            <h3>Ảnh Lịch Sử Trường</h3>
+            <p>Những bức ảnh quý giá ghi lại quá trình phát triển của nhà trường qua các thời kỳ. Để xem chi tiết lịch sử hình thành và phát triển, hãy truy cập <a href="history.html" style="color: #CC3636; font-weight: bold;">trang Lịch sử trường</a>.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Trường xưa">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Trường Những Năm 80</div>
+                        <div class="gallery-date">Năm 1980</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Lớp học xưa">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Lớp Học Thập Niên 90</div>
+                        <div class="gallery-date">Năm 1990</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400" alt="Trường 2000">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Khuôn Viên Trường 2000</div>
+                        <div class="gallery-date">Năm 2000</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Lễ kỷ niệm">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Lễ Kỷ Niệm 30 Năm</div>
+                        <div class="gallery-date">Năm 2005</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download & Share -->
+        <section class="content-section">
+            <h3>Chia Sẻ Và Đóng Góp</h3>
+            <p>Nếu bạn có những bức ảnh đẹp về trường và muốn chia sẻ để bổ sung vào thư viện, hãy gửi cho chúng tôi qua các cách sau:</p>
+            
+            <p><strong>Gửi qua email:</strong> Gửi ảnh độ phân giải cao đến <strong>media@ngoitruongmenyeu.edu.vn</strong> kèm theo mô tả về địa điểm, thời gian và sự kiện. Ảnh của bạn sẽ được xem xét và đăng tải lên thư viện chính thức.</p>
+            
+            <p><strong>Đăng trên mạng xã hội:</strong> Đăng ảnh lên <a href="https://facebook.com" style="color: #CC3636; font-weight: bold;">Facebook</a> hoặc <a href="https://instagram.com" style="color: #CC3636; font-weight: bold;">Instagram</a> với hashtag <strong>#NgoiTruongMenYeu</strong> để chúng tôi có thể tìm thấy và chia sẻ lại.</p>
+            
+            <p><strong>Tham gia CLB Nhiếp ảnh:</strong> Nếu bạn đam mê nhiếp ảnh, hãy tham gia <a href="activities.html" style="color: #CC3636; font-weight: bold;">CLB Nhiếp ảnh</a> của trường để được hướng dẫn kỹ thuật và có cơ hội chụp ảnh cho các sự kiện lớn.</p>
+            
+            <p><strong>Quy định về ảnh:</strong> Tất cả ảnh đóng góp cần đảm bảo không vi phạm bản quyền, không chứa nội dung không phù hợp và tôn trọng quyền riêng tư của mọi người. Để biết thêm về quyền sử dụng hình ảnh, bạn có thể tham khảo tại <a href="https://thuvienphapluat.vn" style="color: #CC3636; font-weight: bold;">Thư viện pháp luật Việt Nam</a>.</p>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section">
+            <h3>Khám Phá Thêm</h3>
+            <p>Thư viện ảnh của chúng tôi vẫn đang được cập nhật thường xuyên với những hình ảnh mới từ các hoạt động và sự kiện của trường. Hãy quay lại thường xuyên để không bỏ lỡ những khoảnh khắc đẹp!</p>
+            
+            <p>Bạn cũng có thể khám phá thêm về trường thông qua các trang khác: tìm hiểu về <a href="history.html" style="color: #CC3636; font-weight: bold;">lịch sử trường</a>, xem các <a href="achievements.html" style="color: #CC3636; font-weight: bold;">thành tích nổi bật</a>, tham khảo các <a href="activities.html" style="color: #CC3636; font-weight: bold;">hoạt động ngoại khóa</a>, hoặc <a href="register.html" style="color: #CC3636; font-weight: bold;">đăng ký</a> để trở thành học sinh của ngôi trường mến yêu.</p>
+            
+            <div class="highlight-box">
+                <h4>🎉 Chúc Bạn Có Những Trải Nghiệm Tuyệt Vời!</h4>
+                <p>Cảm ơn bạn đã ghé thăm thư viện ảnh của chúng tôi. Mỗi bức ảnh là một câu chuyện, và chúng tôi hy vọng những hình ảnh này đã mang đến cho bạn cái nhìn chân thực và đầy cảm xúc về cuộc sống học đường tại Ngôi Trường Mến Yêu.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            <p>📧 Email Thư viện ảnh: media@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm The Wolf - Lớp 12.3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>15/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Thư viện">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Học Sinh Trong Thư Viện</div>
+                        <div class="gallery-date">10/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Thí nghiệm">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Thí Nghiệm Hóa Học</div>
+                        <div class="gallery-date">8/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Biểu diễn">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Tiết Mục Múa Dân Gian</div>
+                        <div class="gallery-date">20/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400" alt="Ca hát">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Tiết Mục Ca Nhạc</div>
+                        <div class="gallery-date">20/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Kịch">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Biểu Diễn Kịch Mùa</div>
+                        <div class="gallery-date">20/11/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=400" alt="Bóng đá">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Trận Chung Kết Bóng Đá</div>
+                        <div class="gallery-date">15/10/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400" alt="Bóng rổ">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Thi Đấu Bóng Rổ</div>
+                        <div class="gallery-date">12/10/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=400" alt="Điền kinh">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Giải Điền Kinh Toàn Trường</div>
+                        <div class="gallery-date">5/5/2024</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="Xây nhà">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">Xây Nhà Tình Thương</div>
+                        <div class="gallery-date">

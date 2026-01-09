@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt Động - Ngôi Trường Mến Yêu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #CC3636;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        /* Trang trí Tết */
+        .tet-decoration {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        
+        .tet-decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .tet-decoration:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .tet-decoration:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .tet-decoration:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .tet-decoration:nth-child(5) { left: 90%; animation-delay: 3s; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #CC3636;
+            border: 3px solid #FFF;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .team-info {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #FFF;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #FFE4B5;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            color: #FFD700;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-right: 1px solid #CC3636;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #CC3636;
+            color: #FFF;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #8B0000;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            border-right: none;
+            border-bottom: 1px solid #CC3636;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #8B0000 0%, #CC3636 100%);
+            color: #FFD700;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .page-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .page-title p {
+            font-size: 18px;
+            color: #FFE4B5;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: #FFF;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+        
+        .content-section h3 {
+            color: #CC3636;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        /* Activity Cards */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .activity-card {
+            background: #FFF;
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .activity-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .activity-content {
+            padding: 25px;
+        }
+        
+        .activity-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .activity-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .activity-description {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        /* Club Cards */
+        .club-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .club-card {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .club-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .club-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .club-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .club-members {
+            font-size: 16px;
+            color: #CC3636;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .club-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Event Timeline */
+        .event-timeline {
+            margin: 30px 0;
+        }
+        
+        .event-item {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFF 100%);
+            border-left: 5px solid #CC3636;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .event-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .event-date {
+            font-size: 18px;
+            color: #CC3636;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .event-title {
+            font-size: 22px;
+            color: #8B0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .event-description {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(139, 0, 0, 0.9);
+            color: #FFD700;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px solid #8B0000;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .highlight-box h4 {
+            font-size: 24px;
+            color: #8B0000;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: 17px;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 40px 20px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #CC3636;
+            font-size: 14px;
+            color: #FFE4B5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+                border-bottom: 1px solid #CC3636;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .activity-grid,
+            .club-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trang trí Tết -->
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+    <div class="tet-decoration">🏮</div>
+    <div class="tet-decoration">🧧</div>
+
+    <!-- Header -->
+    <header>
+         <div class="logo">
+            <img src="images/logo.jpg" alt="The Wolf Logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:70px;color:#8B0000;font-weight:bold;\'>🐺</div>';">
+        </div>
+        <h1>NGÔI TRƯỜNG MẾN YÊU</h1>
+        <div class="team-info">Nhóm: The Wolf | Lớp: 12.3</div>
+        <div class="slogan">"Nơi ươm mầm tri thức, nuôi dưỡng ước mơ"</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a href="#about">Giới Thiệu</a>
+                <div class="dropdown-content">
+                    <a href="history.html">Lịch Sử Trường</a>
+                    <a href="achievements.html">Thành Tích</a>
+                    <a href="gratitude.html">Tri Ân</a>
+                </div>
+            </li>
+            <li><a href="activities.html" class="active">Hoạt Động</a></li>
+            <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+            <li><a href="register.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>HOẠT ĐỘNG HỌC SINH</h2>
+            <p>Môi trường học tập năng động và sáng tạo</p>
+        </div>
+
+        <!-- Introduction -->
+        <section class="content-section">
+            <h3>Tổng Quan Hoạt Động</h3>
+            <p>Trường không chỉ chú trọng vào việc học tập trên lớp mà còn tổ chức rất nhiều hoạt động ngoại khóa phong phú, giúp học sinh phát triển toàn diện về kiến thức, kỹ năng và nhân cách. Các hoạt động được thiết kế để khuyến khích sự sáng tạo, tư duy phản biện, kỹ năng làm việc nhóm và tinh thần lãnh đạo.</p>
+            
+            <p>Mỗi năm học, trường tổ chức hơn 100 hoạt động khác nhau, từ các câu lạc bộ học thuật, thể thao, văn hóa văn nghệ cho đến các chuyến tham quan học tập và hoạt động tình nguyện cộng đồng. Tất cả học sinh đều được khuyến khích tham gia ít nhất một câu lạc bộ hoặc hoạt động ngoại khóa để phát triển kỹ năng và sở thích cá nhân.</p>
+            
+            <p>Để tìm hiểu thêm về vai trò của hoạt động ngoại khóa trong giáo dục, bạn có thể tham khảo tại <a href="https://moet.gov.vn" style="color: #CC3636; font-weight: bold;">Bộ Giáo dục và Đào tạo</a> hoặc <a href="https://vnexpress.net" style="color: #CC3636; font-weight: bold;">VnExpress Giáo dục</a>.</p>
+        </section>
+
+        <!-- Main Activities -->
+        <section class="content-section">
+            <h3>Các Hoạt Động Chính</h3>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Hoạt động văn nghệ" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">🎭</div>
+                        <div class="activity-title">Văn Hóa Văn Nghệ</div>
+                        <div class="activity-description">Tổ chức các buổi biểu diễn nghệ thuật, hội diễn văn nghệ, cuộc thi tài năng để học sinh thể hiện khả năng ca hát, múa, nhạc cụ và diễn xuất. Mỗi năm có ít nhất 5 sự kiện văn nghệ lớn với sự tham gia của toàn trường.</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400" alt="Hoạt động thể thao" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">⚽</div>
+                        <div class="activity-title">Thể Thao</div>
+                        <div class="activity-description">Các hoạt động thể thao đa dạng như bóng đá, bóng rổ, cầu lông, bơi lội, điền kinh. Trường có đội tuyển chuyên nghiệp tham gia các giải thi đấu cấp thành phố và quốc gia. Tổ chức giải thể thao liên trường hàng năm.</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Học thuật" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">📚</div>
+                        <div class="activity-title">Học Thuật</div>
+                        <div class="activity-description">Các câu lạc bộ học thuật như Toán, Lý, Hóa, Văn, Anh giúp học sinh bồi dưỡng kiến thức chuyên sâu. Tổ chức hội thảo khoa học, cuộc thi Olympic, hackathon và các dự án nghiên cứu khoa học cấp trường.</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="Tình nguyện" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">❤️</div>
+                        <div class="activity-title">Tình Nguyện</div>
+                        <div class="activity-description">Chương trình Mùa hè xanh, Tiếp sức đến trường, xây cầu, xây nhà tình thương cho người nghèo. Mỗi năm có hơn 20 đợt tình nguyện đến vùng sâu vùng xa, giúp đỡ hàng nghìn người dân khó khăn.</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Nghệ thuật" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">🎨</div>
+                        <div class="activity-title">Nghệ Thuật</div>
+                        <div class="activity-description">Câu lạc bộ vẽ tranh, nhiếp ảnh, làm phim ngắn, thiết kế đồ họa. Tổ chức triển lãm nghệ thuật, cuộc thi sáng tác, liên hoan phim ngắn học sinh. Học sinh có cơ hội phát triển khả năng sáng tạo nghệ thuật.</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400" alt="Công nghệ" class="activity-image">
+                    <div class="activity-content">
+                        <div class="activity-icon">💻</div>
+                        <div class="activity-title">Công Nghệ</div>
+                        <div class="activity-description">CLB lập trình, robotics, AI, game development. Tham gia các cuộc thi tin học, hackathon, phát triển ứng dụng mobile và website. Học sinh được tiếp cận với công nghệ tiên tiến và kỹ năng lập trình thực tế.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clubs -->
+        <section class="content-section">
+            <h3>Các Câu Lạc Bộ</h3>
+            <p>Trường có hơn 20 câu lạc bộ hoạt động tích cực, mỗi CLB có từ 20-50 thành viên:</p>
+            
+            <div class="club-grid">
+                <div class="club-card">
+                    <div class="club-icon">🧮</div>
+                    <div class="club-name">CLB Toán Học</div>
+                    <div class="club-members">45 thành viên</div>
+                    <div class="club-description">Bồi dưỡng kiến thức Toán nâng cao, giải toán Olympic, tổ chức các buổi thảo luận về các bài toán khó và phương pháp giải.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">🔬</div>
+                    <div class="club-name">CLB Khoa Học</div>
+                    <div class="club-members">38 thành viên</div>
+                    <div class="club-description">Nghiên cứu khoa học thực nghiệm, thí nghiệm Vật lý, Hóa học, Sinh học. Tham gia cuộc thi khoa học kỹ thuật cấp thành phố và quốc gia.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">🌍</div>
+                    <div class="club-name">CLB Tiếng Anh</div>
+                    <div class="club-members">52 thành viên</div>
+                    <div class="club-description">Luyện giao tiếp tiếng Anh, tổ chức English speaking club, cuộc thi hùng biện, xem phim và thảo luận bằng tiếng Anh.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">📖</div>
+                    <div class="club-name">CLB Văn Học</div>
+                    <div class="club-members">35 thành viên</div>
+                    <div class="club-description">Đọc sách, viết văn, thơ, tổ chức các buổi tọa đàm văn học, gặp gỡ nhà văn, thi viết văn và sáng tác thơ.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">🎵</div>
+                    <div class="club-name">CLB Âm Nhạc</div>
+                    <div class="club-members">40 thành viên</div>
+                    <div class="club-description">Học và biểu diễn nhạc cụ như guitar, piano, trống, violin. Tổ chức minishow, hòa nhạc và tham gia các cuộc thi âm nhạc.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">⚽</div>
+                    <div class="club-name">CLB Bóng Đá</div>
+                    <div class="club-members">48 thành viên</div>
+                    <div class="club-description">Tập luyện bóng đá chuyên nghiệp, tham gia giải bóng đá học sinh THPT. Đội tuyển đã vô địch giải cấp thành phố 3 năm liên tiếp.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">📷</div>
+                    <div class="club-name">CLB Nhiếp Ảnh</div>
+                    <div class="club-members">30 thành viên</div>
+                    <div class="club-description">Học kỹ thuật chụp ảnh, chỉnh sửa ảnh, tổ chức triển lãm ảnh, chụp ảnh sự kiện trường học và tham gia cuộc thi nhiếp ảnh.</div>
+                </div>
+                
+                <div class="club-card">
+                    <div class="club-icon">🎬</div>
+                    <div class="club-name">CLB Làm Phim</div>
+                    <div class="club-members">25 thành viên</div>
+                    <div class="club-description">Học làm phim ngắn, kịch bản, quay phim, dựng phim. Sản xuất các video quảng bá cho trường và tham gia liên hoan phim học sinh.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Annual Events -->
+        <section class="content-section">
+            <h3>Lịch Trình Sự Kiện Năm Học</h3>
+            <p>Các sự kiện lớn được tổ chức định kỳ hàng năm:</p>
+            
+            <div class="event-timeline">
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 9 - Lễ Khai Giảng</div>
+                    <div class="event-title">Lễ Khai Giảng Năm Học Mới</div>
+                    <div class="event-description">Chào đón năm học mới với lễ chào cờ trang trọng, phát biểu của hiệu trưởng, trao học bổng cho học sinh xuất sắc và giới thiệu các hoạt động trong năm học. Đây là dịp để học sinh khối 10 làm quen với môi trường trường học mới.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 10 - Ngày Phụ Nữ Việt Nam</div>
+                    <div class="event-title">Chương Trình Tri Ân 20/10</div>
+                    <div class="event-description">Học sinh nam tổ chức các hoạt động tri ân cô giáo và các bạn nữ. Có các trò chơi, tặng hoa, biểu diễn văn nghệ và tổ chức tiệc buffet. Không khí ngày 20/10 luôn rất ấm áp và đầy tình cảm.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 11 - Ngày Nhà Giáo Việt Nam</div>
+                    <div class="event-title">Hội Diễn Văn Nghệ Chào Mừng 20/11</div>
+                    <div class="event-description">Sự kiện văn nghệ lớn nhất trong năm với các tiết mục ca hát, múa, kịch do học sinh tự sáng tạo và biểu diễn. Trao giải thưởng cho giáo viên xuất sắc và học sinh có thành tích cao. Các lớp cũng tự trang trí và tổ chức tiệc nhỏ để tri ân thầy cô.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 12 - Mùa Đông Ấm</div>
+                    <div class="event-title">Chương Trình Từ Thiện Mùa Đông</div>
+                    <div class="event-description">Quyên góp quần áo ấm, chăn màn, sách vở cho học sinh vùng cao. Tổ chức chuyến đi tình nguyện mang quà đến tận tay bà con. Năm ngoái đã quyên góp được 5,000 áo ấm và 3,000 bộ sách vở.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 1 - Tết Nguyên Đán</div>
+                    <div class="event-title">Ngày Hội Văn Hóa Dân Gian</div>
+                    <div class="event-description">Tái hiện không khí Tết truyền thống với các trò chơi dân gian như đánh đu, đấu vật, thi nấu bánh chưng, viết chữ thư pháp. Học sinh được mặc áo dài truyền thống và tham gia các hoạt động văn hóa đặc sắc.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 2 - Xuân Tình Nguyện</div>
+                    <div class="event-title">Chiến Dịch Xuân Tình Nguyện</div>
+                    <div class="event-description">Các hoạt động tình nguyện đầu xuân như dọn dẹp đường phố, trồng cây xanh, sơn lại trường học, xây nhà tình nghĩa. Năm ngoái có hơn 800 học sinh tham gia và trồng được 2,000 cây xanh.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 3 - Ngày Quốc Tế Phụ Nữ</div>
+                    <div class="event-title">Chương Trình "Nữ Sinh Với Tương Lai"</div>
+                    <div class="event-description">Hội thảo về vai trò phụ nữ trong xã hội hiện đại, mời các chị thành công về chia sẻ. Tổ chức cuộc thi Miss & Mister học sinh với các phần thi tài năng, trình diễn thời trang và ứng xử.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 4 - Tháng Thanh Niên</div>
+                    <div class="event-title">Hội Trại Thanh Niên</div>
+                    <div class="event-description">Tổ chức hội trại 3 ngày 2 đêm tại khu du lịch sinh thái. Các hoạt động teambuilding, leo núi, cắm trại, đốt lửa trại, giao lưu văn nghệ. Đây là hoạt động được học sinh yêu thích nhất trong năm.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 5 - Ngày Hội Thể Thao</div>
+                    <div class="event-title">Olympic Thể Thao Toàn Trường</div>
+                    <div class="event-description">Giải thi đấu thể thao liên lớp với các môn bóng đá, bóng rổ, cầu lông, chạy tiếp sức, kéo co. Trao cờ lưu động cho lớp đạt thành tích cao nhất. Không khí sôi động và cổ vũ nhiệt tình từ các lớp.</div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">📅 Tháng 5 - Lễ Bế Giảng</div>
+                    <div class="event-title">Lễ Tốt Nghiệp Và Bế Giảng</div>
+                    <div class="event-description">Lễ trao bằng tốt nghiệp cho học sinh khối 12, trao giải thưởng cho học sinh xuất sắc cả năm. Buổi giao lưu cuối cùng với thầy cô và bạn bè, đầy xúc động và kỷ niệm. Học sinh khối 12 sẽ trồng cây lưu niệm trong khuôn viên trường.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Field Trips -->
+        <section class="content-section">
+            <h3>Chuyến Tham Quan Học Tập</h3>
+            <p>Hàng năm, trường tổ chức nhiều chuyến tham quan để học sinh trải nghiệm thực tế:</p>
+            
+            <div class="highlight-box">
+                <h4>🚌 Các Chuyến Đi Đáng Nhớ</h4>
+                <p><strong>Tham quan di tích lịch sử:</strong> Các địa điểm như Điện Biên Phủ, Côn Đảo, Nhà tù Hoả Lò, Bảo tàng Hồ Chí Minh giúp học sinh hiểu rõ hơn về lịch sử dân tộc. Mỗi chuyến đi đều có giáo viên hướng dẫn và tài liệu học tập chi tiết.</p>
+                
+                <p><strong>Khám phá khoa học công nghệ:</strong> Tham quan các trường đại học như Bách Khoa, Quốc gia, viện nghiên cứu, khu công nghệ cao, nhà máy sản xuất hiện đại. Học sinh được gặp gỡ các nhà khoa học, tìm hiểu quy trình sản xuất và công nghệ tiên tiến.</p>
+                
+                <p><strong>Du lịch sinh thái:</strong> Các chuyến đi đến Sapa, Đà Lạt, Phú Quốc, Hạ Long kết hợp tham quan và học tập về môi trường, sinh thái. Học sinh có cơ hội trải nghiệm thiên nhiên, tìm hiểu văn hóa địa phương và rèn luyện kỹ năng sống.</p>
+                
+                <p><strong>Giao lưu quốc tế:</strong> Chương trình trao đổi văn hóa với các trường ở Singapore, Nhật Bản, Hàn Quốc. Học sinh được trải nghiệm cuộc sống, học tập tại nước ngoài trong 1-2 tuần, học hỏi phương pháp giáo dục tiên tiến.</p>
+            </div>
+            
+            <p>Để biết thêm về các địa điểm du lịch học tập cho học sinh, bạn có thể tham khảo tại <a href="https://vietnamtourism.gov.vn" style="color: #CC3636; font-weight: bold;">Tổng cục Du lịch Việt Nam</a> hoặc <a href="https://baotanglichsu.vn" style="color: #CC3636; font-weight: bold;">Bảo tàng Lịch sử Quốc gia</a>.</p>
+        </section>
+
+        <!-- Video Activities -->
+        <section class="content-section">
+            <h3>Video Các Hoạt Động Nổi Bật</h3>
+            <p>Cùng xem lại những khoảnh khắc đáng nhớ trong các hoạt động của học sinh:</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            <p style="margin-top: 20px;">Video tổng hợp các hoạt động ngoại khóa, văn nghệ, thể thao, tình nguyện và các chuyến tham quan của học sinh trong năm học vừa qua.</p>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="content-section">
+            <h3>Thư Viện Ảnh Hoạt Động</h3>
+            <p>Những hình ảnh sinh động từ các hoạt động ngoại khóa:</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Văn nghệ">
+                    <div class="gallery-caption">Hội Diễn Văn Nghệ 20/11</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?w=400" alt="Thể thao">
+                    <div class="gallery-caption">Giải Bóng Đá Liên Lớp</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="Tình nguyện">
+                    <div class="gallery-caption">Mùa Hè Xanh 2024</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Tham quan">
+                    <div class="gallery-caption">Tham Quan Bảo Tàng</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Hội trại">
+                    <div class="gallery-caption">Hội Trại Thanh Niên</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400" alt="Olympic">
+                    <div class="gallery-caption">Olympic Thể Thao</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="CLB Khoa học">
+                    <div class="gallery-caption">CLB Khoa Học Thực Nghiệm</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400" alt="CLB Công nghệ">
+                    <div class="gallery-caption">CLB Công Nghệ Thông Tin</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Testimonials -->
+        <section class="content-section">
+            <h3>Chia Sẻ Từ Học Sinh</h3>
+            <p>Những cảm nhận của học sinh về các hoạt động ngoại khóa:</p>
+            
+            <div class="highlight-box">
+                <h4>💬 Nguyễn Văn A - Lớp 12.1</h4>
+                <p>"Tham gia CLB Toán học đã giúp em phát triển tư duy logic và có cơ hội giao lưu với những bạn có cùng đam mê. Các buổi thảo luận giải toán khó rất thú vị và bổ ích. Em đã giành được Huy chương Vàng Olympic Toán nhờ sự hỗ trợ của thầy cô và bạn bè trong CLB."</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💬 Trần Thị B - Lớp 11.2</h4>
+                <p>"Chuyến đi Mùa hè xanh đến Sơn La là trải nghiệm đáng nhớ nhất của em. Được giúp đỡ các em nhỏ vùng cao, xây cầu dân sinh, em hiểu hơn về giá trị của sự sẻ chia và trân trọng cuộc sống hiện tại. Em sẽ tiếp tục tham gia các hoạt động tình nguyện trong tương lai."</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💬 Lê Văn C - Lớp 10.3</h4>
+                <p>"CLB Bóng đá không chỉ giúp em rèn luyện sức khỏe mà còn dạy em về tinh thần đồng đội, ý chí vượt khó. Chiến thắng tại giải Bóng đá học sinh THPT là niềm tự hào lớn của cả đội. Cảm ơn thầy cô và các bạn đã luôn tin tưởng và cổ vũ."</p>
+            </div>
+        </section>
+
+        <!-- How to Join -->
+        <section class="content-section">
+            <h3>Cách Thức Tham Gia</h3>
+            <p>Nếu bạn là học sinh của trường và muốn tham gia các hoạt động ngoại khóa, câu lạc bộ, hãy làm theo các bước sau:</p>
+            
+            <p><strong>Bước 1 - Tìm hiểu thông tin:</strong> Vào tháng 9 đầu năm học, trường sẽ tổ chức ngày hội giới thiệu các CLB và hoạt động ngoại khóa. Học sinh có thể đến các gian hàng của từng CLB để tìm hiểu chi tiết về hoạt động, lịch sinh hoạt, yêu cầu thành viên.</p>
+            
+            <p><strong>Bước 2 - Đăng ký tham gia:</strong> Điền vào phiếu đăng ký tham gia CLB hoặc hoạt động mà bạn quan tâm. Nộp phiếu đăng ký tại Đoàn trường hoặc cho giáo viên phụ trách CLB. Mỗi học sinh có thể tham gia tối đa 2-3 CLB.</p>
+            
+            <p><strong>Bước 3 - Tham gia sinh hoạt:</strong> Sau khi được chấp nhận, tham gia các buổi sinh hoạt thường xuyên của CLB. Đối với một số CLB có yêu cầu đặc biệt như CLB thể thao hay Olympic, có thể có buổi thi tuyển để chọn thành viên phù hợp.</p>
+            
+            <p><strong>Bước 4 - Hoạt động tích cực:</strong> Tích cực tham gia các hoạt động, sự kiện, cuộc thi do CLB tổ chức. Đóng góp ý tưởng sáng tạo và hỗ trợ các thành viên khác. Học sinh có thành tích xuất sắc sẽ được khen thưởng vào cuối năm học.</p>
+            
+            <p>Để biết thêm chi tiết hoặc có thắc mắc, hãy liên hệ với Đoàn trường qua email <strong>doan@ngoitruongmenyeu.edu.vn</strong> hoặc ghé văn phòng Đoàn trường vào giờ ra chơi. Bạn cũng có thể truy cập <a href="index.html" style="color: #CC3636; font-weight: bold;">trang chủ</a> để cập nhật thông tin mới nhất về các hoạt động.</p>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section">
+            <h3>Tham Gia Ngay Hôm Nay</h3>
+            <p>Đừng bỏ lỡ cơ hội tham gia các hoạt động bổ ích và thú vị! Nếu bạn chưa phải là học sinh của trường và muốn tìm hiểu về chương trình học tập cũng như các hoạt động ngoại khóa, hãy <a href="register.html" style="color: #CC3636; font-weight: bold;">đăng ký</a> ngay để nhận thông tin tư vấn chi tiết.</p>
+            
+            <p>Để xem thêm hình ảnh về các hoạt động, bạn có thể truy cập <a href="gallery.html" style="color: #CC3636; font-weight: bold;">Thư viện ảnh</a> của chúng tôi. Hoặc tìm hiểu về <a href="history.html" style="color: #CC3636; font-weight: bold;">lịch sử trường</a> và <a href="achievements.html" style="color: #CC3636; font-weight: bold;">thành tích</a> để biết thêm về ngôi trường mến yêu.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p>📍 Địa chỉ: 123 Đường Giáo Dục, Quận 1, Thành phố Hồ Chí Minh</p>
+            <p>📞 Điện thoại: (028) 1234 5678</p>
+            <p>📧 Email: contact@ngoitruongmenyeu.edu.vn</p>
+            <p>📧 Email Đoàn trường: doan@ngoitruongmenyeu.edu.vn</p>
+            
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Ngôi Trường Mến Yêu. Bảo lưu mọi quyền.</p>
+                <p>Thiết kế bởi Nhóm The Wolf - Lớp 12.3</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
